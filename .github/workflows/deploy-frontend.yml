@@ -7,6 +7,7 @@ on:
 
 jobs:
   deploy-frontend:
+    environment: production
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_FRONTEND_ORG_ID }}
@@ -18,12 +19,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-    
-      - name: Debug Environment Variables
-        run: |
-            echo "VERCEL_TOKEN: $VERCEL_TOKEN"
-            echo "VERCEL_ORG_ID: $VERCEL_ORG_ID"
-            echo "VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID"
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
