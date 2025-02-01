@@ -11,7 +11,7 @@ import {
   MediaParams,
   TrendingMediaParams,
 } from './interfaces/trending-media-params.interface';
-import { MovieVideos, Video } from './interfaces/video-moview.interface';
+import { MovieVideos, Video } from './interfaces/video-movie.interface';
 
 @Injectable()
 export class MoviedbService {
