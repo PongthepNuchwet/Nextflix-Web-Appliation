@@ -11,6 +11,7 @@ import {
   MediaParams,
   TrendingMediaParams,
 } from './interfaces/trending-media-params.interface';
+import { MovieVideos, Video } from './interfaces/video-moview.interface';
 
 @Injectable()
 export class MoviedbService {
@@ -108,6 +109,32 @@ export class MoviedbService {
       throw ErrorHandler.handle(
         error,
         `Failed to fetch images for ${params.mediaType} ID: ${params.id}`,
+      );
+    }
+  }
+
+  async getMediaVideos(params: MediaParams): Promise<Video | null> {
+    const url = `${this.BASE_URL}/${params.mediaType}/${params.id}/videos`;
+
+    try {
+      const response = await firstValueFrom(
+        this.httpService.get<MovieVideos>(url, { headers: this.getHeaders() }),
+      );
+
+      this.logger.debug(response.data);
+
+      const filteredVideos = response.data.results
+        .filter((video) => video.type === 'Teaser' && video.site === 'YouTube')
+        .map((video) => ({
+          ...video,
+          key: `https://www.youtube.com/watch?v=${video.key}`,
+        }));
+
+      return filteredVideos.length > 0 ? filteredVideos[0] : null;
+    } catch (error) {
+      throw ErrorHandler.handle(
+        error,
+        `Failed to fetch teaser videos for ${params.mediaType} ID: ${params.id}`,
       );
     }
   }
