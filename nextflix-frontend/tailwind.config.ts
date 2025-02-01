@@ -12,6 +12,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        netflix: "var(--font-netflix-sans), sans-serif",
+      }
     },
   },
   plugins: [],
