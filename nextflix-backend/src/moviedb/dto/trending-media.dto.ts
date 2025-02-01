@@ -1,15 +1,5 @@
 import { IsEnum, IsString } from 'class-validator';
-
-export enum MediaType {
-  MOVIE = 'movie',
-  TV = 'tv',
-  ALL = 'all',
-}
-
-export enum Frequency {
-  DAY = 'day',
-  WEEK = 'week',
-}
+import { Frequency, MediaType } from './media.dto';
 
 export class TrendingMediaDto {
   @IsEnum(MediaType, { message: 'mediaType must be either movie, tv, or all' })
