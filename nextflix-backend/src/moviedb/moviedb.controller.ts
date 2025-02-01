@@ -25,7 +25,7 @@ export class MoviedbController {
   }
 
   @Get('trending')
-  @UsePipes(new ValidationPipe({ transform: true })) // ✅ Ensures query transformation
+  @UsePipes(new ValidationPipe({ transform: true }))
   async getTrendingMovies(@Query() query: TrendingMediaDto): Promise<Movie[]> {
     return this.moviesService.getTrendingMovies({
       frequency: query.frequency,
