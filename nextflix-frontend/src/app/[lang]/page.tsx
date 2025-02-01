@@ -1,5 +1,5 @@
-import { getDictionary } from "@/get-dictionary";
-import { Locale } from "@/i18n-config";
+import { getDictionary } from "@/app/lib/i18n/get-dictionary";
+import { Locale } from "@/app/lib/i18n/i18n-config";
 
 export default async function Page({
   params,
