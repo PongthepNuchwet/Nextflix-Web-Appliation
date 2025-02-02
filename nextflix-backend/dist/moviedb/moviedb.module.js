@@ -6,25 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.MoviedbModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const config_1 = require("@nestjs/config");
-const moviedb_module_1 = require("./moviedb/moviedb.module");
-let AppModule = class AppModule {
+const moviedb_controller_1 = require("./moviedb.controller");
+const moviedb_service_1 = require("./moviedb.service");
+const axios_1 = require("@nestjs/axios");
+let MoviedbModule = class MoviedbModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+exports.MoviedbModule = MoviedbModule;
+exports.MoviedbModule = MoviedbModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            config_1.ConfigModule.forRoot({
-                isGlobal: true,
-            }),
-            moviedb_module_1.MoviedbModule,
-        ],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        imports: [axios_1.HttpModule],
+        controllers: [moviedb_controller_1.MoviedbController],
+        providers: [moviedb_service_1.MoviedbService],
     })
-], AppModule);
-//# sourceMappingURL=app.module.js.map
+], MoviedbModule);
+//# sourceMappingURL=moviedb.module.js.map
