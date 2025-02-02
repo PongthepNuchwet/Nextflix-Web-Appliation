@@ -5,7 +5,7 @@ export interface Movie {
   original_title?: string;
   overview: string;
   poster_path: string;
-  media_type: string;
+  media_type: mediaType;
   adult: boolean;
   original_language: string;
   genre_ids: number[];
@@ -20,3 +20,5 @@ export interface Movie {
   origin_country?: string[];
   ranking?: number;
 }
+
+export type mediaType = 'movie' | 'tv';
