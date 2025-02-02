@@ -13,4 +13,7 @@ export interface DictionaryType {
     movies: string
     new_popular: string
     browse_by_language: string
+    in: string,
+    today: string
+    categories: string
 }

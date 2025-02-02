@@ -12,5 +12,8 @@
     "tv_shows": "TV Shows",
     "movies": "Movies",
     "new_popular": "New & Popular",
-    "browse_by_language": "Browse by Language"
+    "browse_by_language": "Browse by Language",
+    "in": "IN",
+    "today": "Today",
+    "categories": "Categories"
 }
