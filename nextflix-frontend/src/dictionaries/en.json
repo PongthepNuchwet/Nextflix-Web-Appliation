@@ -1,3 +1,16 @@
 {
-    "hello": "Hello"
+    "hello": "Hello",
+    "no_movies_available": "No movies available.",
+    "loading": "Loading...",
+    "error_fetch_movies": "Failed to fetch movies. Please try again later.",
+    "my_list": "My List",
+    "play": "Play",
+    "info": "Info",
+    "more_info": "More Info",
+    "no_description": "No description available.",
+    "home": "Home",
+    "tv_shows": "TV Shows",
+    "movies": "Movies",
+    "new_popular": "New & Popular",
+    "browse_by_language": "Browse by Language"
 }
