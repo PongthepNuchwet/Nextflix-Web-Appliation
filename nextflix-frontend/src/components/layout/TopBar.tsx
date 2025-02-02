@@ -1,14 +1,16 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaSearch, FaChromecast } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
 import { RiArrowDownSFill } from "react-icons/ri";
-import DropdownMenu from "./DropdownMenu";
+import MovieDropdownMenu from "./MovieDropdownMenu";
+import { DictionaryType } from "@/types/dictionaries";
 
-export default function TapBar() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+type TopBarProps = {
+  dict: DictionaryType
+}
+export default function TopBar({ dict }: TopBarProps) {
 
   return (
     <div className="fixed flex flex-col px-5 sm:px-9 lg:px-20 py-6 top-0 left-0 right-0 bg-gradient-to-b from-black lg:from-black/70 to-transparent z-50 transition-all duration-300">
@@ -36,18 +38,17 @@ export default function TapBar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex flex-row items-center space-x-6 text-white text-xl">
-            <Link href="/home" className="hidden xl:block">Home</Link>
-            <Link href="/tvshows">TV Shows</Link>
-            <Link href="/moview">Movies</Link>
+            <Link href="/home" className="hidden xl:block">{dict.home}</Link>
+            <Link href="/tvshows">{dict.tv_shows}</Link>
+            <Link href="/movies">{dict.movies}</Link>
 
             {/* Extracted DropdownMenu Component */}
-            <DropdownMenu
-              isOpen={dropdownOpen}
-              toggle={() => setDropdownOpen(!dropdownOpen)}
+            <MovieDropdownMenu
+              trigger={dict.categories}
               options={[
-                { href: "/new-popular", label: "New & Popular" },
-                { href: "/my-list", label: "My List" },
-                { href: "/browse-by-language", label: "Browse by Language" },
+                { href: "/new-popular", label: dict.new_popular },
+                { href: "/my-list", label: dict.my_list },
+                { href: "/browse-by-language", label: dict.browse_by_language },
               ]}
             />
           </div>
@@ -67,17 +68,16 @@ export default function TapBar() {
       {/* Mobile Navigation */}
       <div className="flex md:hidden flex-row justify-center items-center mt-4">
         <div className="flex flex-row items-center justify-center space-x-6 text-white text-sm md:text-lg font-medium">
-          <Link href="/tvshows">TV Shows</Link>
-          <Link href="/moview">Movies</Link>
+          <Link href="/tvshows">{dict.tv_shows}</Link>
+          <Link href="/moview">{dict.movies}</Link>
 
           {/* Extracted DropdownMenu Component for Mobile */}
-          <DropdownMenu
-            isOpen={dropdownOpen}
-            toggle={() => setDropdownOpen(!dropdownOpen)}
+          <MovieDropdownMenu
+            trigger={dict.categories}
             options={[
-              { href: "/new-popular", label: "New & Popular" },
-              { href: "/my-list", label: "My List" },
-              { href: "/browse-by-language", label: "Browse by Language" },
+              { href: "/new-popular", label: dict.new_popular },
+              { href: "/my-list", label: dict.my_list },
+              { href: "/browse-by-language", label: dict.browse_by_language },
             ]}
           />
         </div>
