@@ -27,11 +27,16 @@ export class MoviedbController {
   @Get('trending')
   @UsePipes(new ValidationPipe({ transform: true }))
   async getTrendingMovies(@Query() query: TrendingMediaDto): Promise<Movie[]> {
-    return this.moviesService.getTrendingMovies({
+    const movies = await this.moviesService.getTrendingMovies({
       frequency: query.frequency,
       mediaType: query.mediaType,
       lang: query.lang || 'en-US',
     });
+    const sortedMovies = movies.sort((a, b) => b.popularity - a.popularity);
+    return sortedMovies.map((movie, index) => ({
+      ...movie,
+      ranking: index + 1,
+    }));
   }
 
   @Get('details')

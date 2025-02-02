@@ -25,4 +25,5 @@ export interface Movie {
   original_name?: string;
   first_air_date?: string;
   origin_country?: string[];
+  ranking?: number;
 }
