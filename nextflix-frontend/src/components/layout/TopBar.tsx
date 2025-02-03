@@ -25,6 +25,8 @@ export default function TopBar({ dict }: TopBarProps) {
             alt="logo"
             width={139}
             height={38}
+            style={{ height: 38, width: 139 }}
+            priority
           />
           <Image
             src="/images/netflix-logo-small.png"
