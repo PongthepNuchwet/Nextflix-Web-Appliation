@@ -13,7 +13,7 @@ type TopBarProps = {
 export default function TopBar({ dict }: TopBarProps) {
 
   return (
-    <div className="fixed flex flex-col px-5 sm:px-9 lg:px-20 py-6 top-0 left-0 right-0 bg-gradient-to-b from-black lg:from-black/70 to-transparent z-50 transition-all duration-300">
+    <div className="z-50 fixed flex flex-col px-5 sm:px-9 lg:px-20 py-6 top-0 left-0 right-0 bg-gradient-to-b from-black lg:from-black/70 to-transparent  transition-all duration-300">
       {/* Main Navigation Container */}
       <div className="flex flex-row justify-between items-center">
         {/* Left Section - Logo & Desktop Menu */}
