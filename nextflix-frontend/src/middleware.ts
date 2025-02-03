@@ -12,10 +12,11 @@ export function middleware(request: NextRequest) {
     );
 
     if (pathnameIsMissingLocale) {
+        console.log("pathname ", pathname);
 
         return NextResponse.redirect(
             new URL(
-                `/${i18n.defaultLocale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+                `/${i18n.defaultLocale}${pathname.startsWith("/") ? "" : "/"}${pathname == '/' ? '/home' : pathname}`,
                 request.url,
             ),
         );
