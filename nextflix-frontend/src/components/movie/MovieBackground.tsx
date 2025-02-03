@@ -1,12 +1,12 @@
 import React from 'react'
 import Image from "next/image";
 
-type Prop = {
+type MovieBackgroundProp = {
     imagePath?: string;
     title: string;
 }
 
-export default function BackgroudFullScreen({ imagePath, title }: Prop) {
+export default function MovieBackground({ imagePath, title }: MovieBackgroundProp) {
     return (
         <div className="relative w-screen md:h-screen h-[70vh]">
             {imagePath ? (

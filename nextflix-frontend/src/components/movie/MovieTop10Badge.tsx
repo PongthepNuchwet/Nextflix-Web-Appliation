@@ -1,10 +1,10 @@
 import Image from 'next/image'
 
-type Props = {
+type MovieTop10BadgeProps = {
     width?: number
     height?: number
 }
-export default function Top10({ height, width }: Props) {
+export default function MovieTop10Badge({ height, width }: MovieTop10BadgeProps) {
     return (
         <Image
             src={'/vector/Top10.svg'}

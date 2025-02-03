@@ -3,11 +3,11 @@ import { Carousel, CarouselContent } from '../ui/carousel'
 import MovieCard from './MovieCard'
 import { Movie } from '@/types/movie.interface'
 
-type CarouselMovieProps = {
+type MovieCarouselProps = {
     title: string
     movies: Movie[]
 }
-export default function CarouselMovie({ title, movies }: CarouselMovieProps) {
+export default function MovieCarousel({ title, movies }: MovieCarouselProps) {
     return (
         <div className='z-50 w-full flex flex-col gap-2'>
             <h2 className='text-white text-2xl font-bold'>{title}</h2>
@@ -16,7 +16,7 @@ export default function CarouselMovie({ title, movies }: CarouselMovieProps) {
                     align: "start",
                 }}
                 className="w-full">
-                <CarouselContent className="gap-2">
+                <CarouselContent className="gap-2 p-2">
                     {movies.map((movie) => (
                         <MovieCard key={movie.id} movie={movie} />
                     ))}
