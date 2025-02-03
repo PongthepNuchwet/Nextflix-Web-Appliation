@@ -1,4 +1,4 @@
-import { getMovieImages } from '@/api/get-movie-images'
+import { getMovieImages } from '@/services/fetchMovieImages.ts'
 import { Locale } from '@/lib/i18n/i18n-config'
 import { Movie } from '@/types/movie.interface'
 import React, { Suspense } from 'react'

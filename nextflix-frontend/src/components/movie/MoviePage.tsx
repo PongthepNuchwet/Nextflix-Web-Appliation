@@ -1,13 +1,14 @@
 import React from "react";
+
 import { Movie } from "@/types/movie.interface";
-import Top10 from "./Top10";
-import ActionMovieScreen from "./ActionMovieScreen";
-import CarouselMovie from "./CarouselMovie";
-import BackgroudFullScreen from "./BackgroudFullScreen";
 import { DictionaryType } from "@/types/dictionaries";
 import { Locale } from "@/lib/i18n/i18n-config";
-import MovieLogo from "./MovieLogo";
 
+import MovieTop10Badge from "./MovieTop10Badge";
+import MovieActionButtons from "./MovieActionButtons";
+import MovieCarousel from "./MovieCarousel";
+import MovieBackground from "./MovieBackground";
+import MovieLogo from "./MovieLogo";
 
 type Props = {
   movies: Movie[];
@@ -25,7 +26,7 @@ export default function MoviePage({ movies, dict, lang }: Props) {
     <div className="relative  w-screen h-screen bg-black">
 
       {/* Background Image */}
-      <BackgroudFullScreen imagePath={topMovie.backdrop_path} title={topMovie.title || 'Movie'} />
+      <MovieBackground imagePath={topMovie.backdrop_path} title={topMovie.title || 'Movie'} />
 
       {/* Content Section */}
       <div className="absolute bottom-0 left-0 right-0 top-0  p-0  md:pl-10  z-20 text-white flex flex-col items-start justify-end">
@@ -37,7 +38,7 @@ export default function MoviePage({ movies, dict, lang }: Props) {
 
           {/* Top 10 Badge + Rank */}
           <div className="flex flex-row items-center justify-center gap-x-1 md:gap-x-2 text-lg md:text-3xl font-bold">
-            <Top10 width={30} height={30} />
+            <MovieTop10Badge width={30} height={30} />
             {topMovie.ranking && <p>#{topMovie.ranking}</p>}
             <p>{dict.in} {topMovie.media_type === "movie" ? dict.movies : dict.tv_shows} {dict.today}</p>
           </div>
@@ -49,11 +50,11 @@ export default function MoviePage({ movies, dict, lang }: Props) {
             <p className="text-xl opacity-50">{dict.no_description}</p>
           )}
 
-          <ActionMovieScreen movieID={topMovie.id} dict={dict} />
+          <MovieActionButtons movie={topMovie} dict={dict} lang={lang} />
         </div>
 
         <div className=" z-20 md:pb-10  w-full bg-gradient-to-t from-black to-transparent">
-          <CarouselMovie title="Popular on Netflix" movies={movies} />
+          <MovieCarousel title="Popular on Netflix" movies={movies} />
         </div>
       </div>
     </div>
