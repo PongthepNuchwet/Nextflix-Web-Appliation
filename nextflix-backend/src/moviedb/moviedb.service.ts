@@ -123,12 +123,9 @@ export class MoviedbService {
 
       this.logger.debug(response.data);
 
-      const filteredVideos = response.data.results
-        .filter((video) => video.type === 'Teaser' && video.site === 'YouTube')
-        .map((video) => ({
-          ...video,
-          key: `https://www.youtube.com/watch?v=${video.key}`,
-        }));
+      const filteredVideos = response.data.results.filter(
+        (video) => video.type === 'Teaser' && video.site === 'YouTube',
+      );
 
       return filteredVideos.length > 0 ? filteredVideos[0] : null;
     } catch (error) {
