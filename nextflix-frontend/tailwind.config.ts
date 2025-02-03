@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 import * as tailwindAnimate from "tailwindcss-animate"
+import tailwindcssAnimated from "tailwindcss-animated"
+
 
 export default {
 	darkMode: ["class", "[data-theme='dark']"],
@@ -62,5 +64,5 @@ export default {
 			}
 		}
 	},
-	plugins: [tailwindAnimate],
+	plugins: [tailwindAnimate, tailwindcssAnimated],
 } satisfies Config;
