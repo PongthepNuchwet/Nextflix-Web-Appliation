@@ -9,9 +9,10 @@ import NoData from "@/components/NoData";
 export default async function Page({
   params,
 }: {
-  params: { lang: Locale };
+  params: Promise<{ lang: Locale }>
+
 }) {
-  const lang = params.lang;
+  const lang = (await params).lang;
   const dict = await getDictionary(lang);
 
   try {
