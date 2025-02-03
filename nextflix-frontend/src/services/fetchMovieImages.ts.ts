@@ -1,7 +1,7 @@
 'use server';
 
 import { i18n } from "@/lib/i18n/i18n-config";
-import { MovieImages } from "@/types/images-movie.interface";
+import { MovieImages } from "@/types/imagesMovie.interface";
 
 type Props = {
     mediaType: 'movie' | 'tv';
