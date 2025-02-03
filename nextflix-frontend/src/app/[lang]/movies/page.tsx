@@ -15,7 +15,7 @@ export default async function Page({
   const dict = await getDictionary(lang);
 
   try {
-    const movies = await getTrendingMovies({ frequency: "day", mediaType: "all", lang });
+    const movies = await getTrendingMovies({ frequency: "day", mediaType: "movie", lang });
 
     if (!movies || movies.length === 0) {
       return <NoData message={dict.no_movies_available} />;
