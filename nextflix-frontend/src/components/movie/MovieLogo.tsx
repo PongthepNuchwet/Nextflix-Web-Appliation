@@ -33,7 +33,7 @@ export default async function MovieLogo({ movie, lang, dict }: MovieLogoProps) {
                     src={`https://image.tmdb.org/t/p/original${logo.file_path}`}
                     width={logo.width}
                     height={logo.height}
-                    className="w-[70vw] md:w-[35vw]"
+                    className="w-[70vw] md:w-[35vw] animate-fade-up"
                     alt={movie.title || "Movie Logo"}
                     priority
                 />

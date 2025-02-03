@@ -37,7 +37,7 @@ export default function MoviePage({ movies, dict, lang }: Props) {
 
 
           {/* Top 10 Badge + Rank */}
-          <div className="flex flex-row items-center justify-center gap-x-1 md:gap-x-2 text-lg md:text-3xl font-bold">
+          <div className="animate-fade-left flex flex-row items-center justify-center gap-x-1 md:gap-x-2 text-lg md:text-3xl font-bold">
             <MovieTop10Badge width={30} height={30} />
             {topMovie.ranking && <p>#{topMovie.ranking}</p>}
             <p>{dict.in} {topMovie.media_type === "movie" ? dict.movies : dict.tv_shows} {dict.today}</p>
@@ -45,9 +45,9 @@ export default function MoviePage({ movies, dict, lang }: Props) {
 
           {/* Movie Overview */}
           {topMovie.overview ? (
-            <p className="line-clamp-3 text-sm md:text-xl">{topMovie.overview}</p>
+            <p className="animate-fade-left line-clamp-3 text-sm md:text-xl">{topMovie.overview}</p>
           ) : (
-            <p className="text-xl opacity-50">{dict.no_description}</p>
+            <p className=" animate-fade-left text-xl opacity-50">{dict.no_description}</p>
           )}
 
           <MovieActionButtons movie={topMovie} dict={dict} lang={lang} />
