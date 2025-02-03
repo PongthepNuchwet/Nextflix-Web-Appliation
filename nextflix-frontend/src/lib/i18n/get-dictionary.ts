@@ -7,5 +7,6 @@ const dictionaries = {
     'th': () => import('@/dictionaries/th.json').then((module) => module.default),
 }
 
+
 export const getDictionary = async (locale: Locale): Promise<DictionaryType> =>
     dictionaries[locale]()
