@@ -24,7 +24,7 @@ export default function MovieDetailsHeader({ movie }: MovieDetailsHeaderProps) {
             )}
 
             {/* Movie Information */}
-            <div className="w-full px-4 md:px-0 flex flex-row justify-between gap-2 bg-gradient-to-t from-black to-transparent z-10">
+            <div className="w-full px-4 md:px-0 flex flex-row justify-between gap-2 dark:bg-gradient-to-t from-black to-transparent z-10">
                 <div className="flex flex-col gap-2">
                     <h1 className="text-4xl font-bold shadow-2xl">{movie.name ?? movie.title}</h1>
 

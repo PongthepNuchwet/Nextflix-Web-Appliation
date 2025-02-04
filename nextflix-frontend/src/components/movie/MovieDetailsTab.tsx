@@ -16,7 +16,7 @@ type MovieDetailsTabProps = {
 const TabTrigger = ({ value, label }: { value: string; label: string }) => (
     <TabsTrigger
         value={value}
-        className="uppercase text-md rounded-none data-[state=active]:border-b-3 data-[state=active]:border-red-600 data-[state=active]:text-white transition-all"
+        className="uppercase text-md rounded-none data-[state=active]:border-b-3 data-[state=active]:border-red-600 data-[state=active]:dark:text-white data-[state=active]:text-black transition-all shadow-none"
     >
         {label}
     </TabsTrigger>
@@ -31,15 +31,15 @@ export default function MovieDetailsTab({ movie, lang, mediaType, dict }: MovieD
         <div className="w-full">
             {/* Tabs */}
             <Tabs defaultValue="overview" className="w-full px-4 md:px-0">
-                <TabsList className="flex flex-row gap-4 items-start justify-start bg-transparent border-b border-transparent ">
-                    <TabTrigger value="overview" label={dict.overview} />
-                    <TabTrigger value="video" label={dict.video} />
+                <TabsList className="flex  flex-row gap-4 items-start justify-start bg-transparent border-b border-transparent ">
+                    <TabTrigger value="overview" label={dict.overview}  />
+                    <TabTrigger value="video" label={dict.video}  />
                 </TabsList>
 
                 {/* Overview Content */}
                 <TabsContent value="overview" className="mt-4 flex flex-col gap-4">
                     {/* Movie Overview */}
-                    <p className="text-gray-300">{movie.overview || dict.no_description_available}</p>
+                    <p className="dark:text-gray-300">{movie.overview || dict.no_description_available}</p>
 
                     {/* Movie Metadata */}
                     {[
@@ -49,7 +49,7 @@ export default function MovieDetailsTab({ movie, lang, mediaType, dict }: MovieD
                         { label: dict.language, value: formatList(movie.spoken_languages?.map(lang => ({ name: lang.english_name }))) },
                     ].map((item, index) => (
                         <p key={index}>
-                            <span className="font-medium mr-6 text-[#7e7e7e]">{item.label}:</span>
+                            <span className="font-medium mr-6 text-muted-foreground">{item.label}:</span>
                             {item.value}
                         </p>
                     ))}
