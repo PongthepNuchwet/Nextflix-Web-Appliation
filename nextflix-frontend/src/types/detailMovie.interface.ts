@@ -15,9 +15,9 @@ export interface detailsMovie {
     poster_path: string
     production_companies: ProductionCompany[]
     production_countries: ProductionCountry[]
-    release_date: string
+    release_date?: string
     revenue: number
-    runtime: number
+    runtime?: number
     spoken_languages: SpokenLanguage[]
     status: string
     tagline: string
@@ -25,6 +25,12 @@ export interface detailsMovie {
     video: boolean
     vote_average: number
     vote_count: number
+
+    // tv
+    name: string
+    number_of_episodes?: number,
+    number_of_seasons?: number,
+    last_air_date?: string,
 }
 
 export interface BelongsToCollection {
