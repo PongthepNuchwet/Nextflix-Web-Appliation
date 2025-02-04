@@ -33,6 +33,6 @@ export default async function Page({
 
   } catch (error) {
     console.error("Error fetching movies:", error);
-    return <ErrorMessage message={dict.error_fetch_movies} />;
+    return <ErrorMessage  fullScreen  message={dict.error_fetch_movies} />;
   }
 }
