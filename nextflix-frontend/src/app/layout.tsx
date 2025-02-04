@@ -41,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${netflix_sans.variable} antialiased`}>
+      <body className={`${netflix_sans.variable} antialiased bg-white dark:bg-black `}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
