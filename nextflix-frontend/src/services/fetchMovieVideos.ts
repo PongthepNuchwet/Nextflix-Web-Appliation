@@ -27,6 +27,6 @@ export const getOneMovieVideos = async ({ mediaType, id, lang = i18n.defaultLoca
         return data;
     } catch (error) {
         console.error("Error fetching movie videos:", error);
-        return null;
+        throw error;
     }
 };

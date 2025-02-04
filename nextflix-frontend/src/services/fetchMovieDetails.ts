@@ -26,6 +26,6 @@ export const getMovieDetails = async ({ mediaType, id, lang }: Props): Promise<d
         return data;
     } catch (error) {
         console.error("Error fetching movie details:", error);
-        return null;
+        throw error;
     }
 };

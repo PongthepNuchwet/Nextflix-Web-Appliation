@@ -26,6 +26,6 @@ export const getMovieImages = async ({ mediaType, id, lang = i18n.defaultLocale 
         return data;
     } catch (error) {
         console.error("Error fetching movie images:", error);
-        return null;
+        throw error;
     }
 };

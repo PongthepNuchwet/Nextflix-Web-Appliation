@@ -26,6 +26,6 @@ export const getTrendingMovies = async ({ mediaType, frequency, lang }: Props): 
         return data;
     } catch (error) {
         console.error("Error fetching trending movies:", error);
-        return null;
+        throw error;
     }
 };
