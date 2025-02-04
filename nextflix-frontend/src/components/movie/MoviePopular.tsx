@@ -19,7 +19,7 @@ export default async function MoviePopular({ lang, dict }: MoviePopularProps) {
         }
 
         return (
-            <MovieCarousel title="Movie Popular" movies={movies} lang={lang} />
+            <MovieCarousel title={dict.popular_movies} movies={movies} lang={lang} />
         );
 
     } catch (error) {

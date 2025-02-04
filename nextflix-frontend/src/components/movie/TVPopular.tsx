@@ -19,7 +19,7 @@ export default async function TVPopular({ lang, dict }: TVPopularProps) {
         }
 
         return (
-            <MovieCarousel title="TV Shows Popular" movies={movies} lang={lang} />
+            <MovieCarousel title={dict.popular_tv_shows} movies={movies} lang={lang} />
         );
 
     } catch (error) {

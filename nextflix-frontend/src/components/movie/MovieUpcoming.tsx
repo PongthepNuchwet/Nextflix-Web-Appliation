@@ -19,7 +19,7 @@ export default async function MovieUpcoming({ lang, dict }: MovieUpcomingProps) 
         }
 
         return (
-            <MovieCarousel title="Movie Upcoming" movies={movies} lang={lang} />
+            <MovieCarousel title={dict.upcoming_movies} movies={movies} lang={lang} />
         );
 
     } catch (error) {
