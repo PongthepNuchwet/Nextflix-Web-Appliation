@@ -16,11 +16,11 @@ type DropdownMenuProps = {
 export default function MovieDropdownMenu({ options, trigger }: DropdownMenuProps) {
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger  className="flex items-center gap-1  text-white  cursor-pointer border-none outline-none">
+            <DropdownMenuTrigger  className="flex items-center gap-1   cursor-pointer border-none outline-none">
                 {trigger}
                 <RiArrowDownSFill className="text-lg" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className=" text-white border-none bg-black/90">
+            <DropdownMenuContent className="  border-none ">
                 {options.map((option, index) => (
                     <DropdownMenuItem key={index} >
                         <Link href={option.href} className="w-full block px-4 py-2">
