@@ -2,7 +2,6 @@ import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { Locale } from "@/lib/i18n/i18n-config";
 import MoviePage from "@/components/movie/MoviePage";
 import { getTrendingMovies } from "@/services/fetchTrendingMovies";
-import { Suspense } from "react";
 import ErrorMessage from "@/components/ErrorMessage";
 import NoData from "@/components/NoData";
 
@@ -22,9 +21,7 @@ export default async function Page({
     }
 
     return (
-      <Suspense fallback={<div>{dict.loading}</div>}>
-        <MoviePage movies={movies} dict={dict} lang={lang} />
-      </Suspense>
+      <MoviePage movies={movies} dict={dict} lang={lang} />
     );
 
   } catch (error) {
