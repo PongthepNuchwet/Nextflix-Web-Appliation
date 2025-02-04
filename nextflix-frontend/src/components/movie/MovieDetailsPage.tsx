@@ -21,7 +21,7 @@ export default function MovieDetailsPage({
     dict,
 }: MovieDetailsPageProps) {
     return (
-        <div className="sm:px-10 md:px-20 md:pt-30 bg-white dark:bg-black">
+        <div className="sm:px-10 md:px-20 md:pt-30 ">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                 {/* Movie Poster */}
