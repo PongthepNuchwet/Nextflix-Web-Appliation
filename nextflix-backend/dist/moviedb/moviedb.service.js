@@ -59,7 +59,7 @@ let MoviedbService = MoviedbService_1 = class MoviedbService {
             const movie = response.data;
             return {
                 ...movie,
-                poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+                poster_path: `https://image.tmdb.org/t/p/w1280${movie.poster_path}`,
                 backdrop_path: `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`,
             };
         }

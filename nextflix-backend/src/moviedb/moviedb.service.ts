@@ -75,7 +75,7 @@ export class MoviedbService {
 
       return {
         ...movie,
-        poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+        poster_path: `https://image.tmdb.org/t/p/w1280${movie.poster_path}`,
         backdrop_path: `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`,
       };
     } catch (error) {
