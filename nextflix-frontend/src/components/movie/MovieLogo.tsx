@@ -2,7 +2,6 @@ import { getMovieImages } from '@/services/fetchMovieImages.ts'
 import { Locale } from '@/lib/i18n/i18n-config'
 import { Movie } from '@/types/movie.interface'
 import React, { Suspense } from 'react'
-import ErrorMessage from '../ErrorMessage'
 import { DictionaryType } from '@/types/dictionaries'
 import Image from 'next/image'
 import NoData from '../NoData'
@@ -41,6 +40,6 @@ export default async function MovieLogo({ movie, lang, dict }: MovieLogoProps) {
         );
     } catch (error) {
         console.error("Error fetching movie images:", error);
-        return <ErrorMessage message={dict.error_fetch_movies} />;
+        return <h1 className="text-4xl font-bold shadow-2xl">{movie.name ?? movie.title}</h1>
     }
 }
