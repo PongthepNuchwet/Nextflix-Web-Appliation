@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaSearch, FaChromecast } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
 import MovieDropdownMenu from "./MovieDropdownMenu";
@@ -14,8 +17,17 @@ type TopBarProps = {
 };
 
 export default function TopBar({ dict, lang }: TopBarProps) {
+  const pathname = usePathname();
+
+  // Function to determine active link styles
+  const getLinkClass = (href: string) => {
+    return pathname.startsWith(href)
+      ? "text-black dark:text-white font-semibold"
+      : "text-muted-foreground hover:dark:text-white hover:text-black transition-all";
+  };
+
   return (
-    <div className="z-50 fixed    flex flex-col px-5 sm:px-9 lg:px-20 py-6 top-0 left-0 right-0 bg-gradient-to-b from-black lg:from-black/70 to-transparent transition-all duration-300">
+    <div className="z-50 fixed flex flex-col px-5 sm:px-9 lg:px-20 py-6 top-0 left-0 right-0 bg-white dark:bg-transparent dark:bg-gradient-to-b from-black lg:from-black/70 to-transparent transition-all duration-300">
       {/* Main Navigation Container */}
       <div className="flex flex-row justify-between items-center">
         {/* Left Section - Logo & Desktop Menu */}
@@ -41,20 +53,29 @@ export default function TopBar({ dict, lang }: TopBarProps) {
           />
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex flex-row items-center space-x-6 text-white text-md">
-            <Link href={`/${lang}/home`} className="hidden xl:block">
+          <div className="hidden md:flex flex-row items-center space-x-6 text-md">
+            <Link href={`/${lang}/home`} className={getLinkClass(`/${lang}/home`)}>
               {dict.home}
             </Link>
-            <Link href={`/${lang}/tvshows`}>{dict.tv_shows}</Link>
-            <Link href={`/${lang}/movies`}>{dict.movies}</Link>
-            <Link href={`/${lang}/new-popular`} className="hidden lg:block">{dict.new_popular}</Link>
-            <Link href={`/${lang}/my-list`} className="hidden lg:block">{dict.my_list}</Link>
-            <Link href={`/${lang}/browse-by-language`} className="hidden lg:block">{dict.browse_by_language}</Link>
+            <Link href={`/${lang}/tvshows`} className={getLinkClass(`/${lang}/tvshows`)}>
+              {dict.tv_shows}
+            </Link>
+            <Link href={`/${lang}/movies`} className={getLinkClass(`/${lang}/movies`)}>
+              {dict.movies}
+            </Link>
+            <Link href={`/${lang}/new-popular`} className={`hidden lg:block ${getLinkClass(`/${lang}/new-popular`)}`}>
+              {dict.new_popular}
+            </Link>
+            <Link href={`/${lang}/my-list`} className={`hidden lg:block ${getLinkClass(`/${lang}/my-list`)}`}>
+              {dict.my_list}
+            </Link>
+            <Link href={`/${lang}/browse-by-language`} className={`hidden lg:block ${getLinkClass(`/${lang}/browse-by-language`)}`}>
+              {dict.browse_by_language}
+            </Link>
 
             {/* Extracted DropdownMenu Component */}
             <div className="hidden md:block lg:hidden">
               <MovieDropdownMenu
-
                 trigger={dict.categories}
                 options={[
                   { href: `/${lang}/new-popular`, label: dict.new_popular },
@@ -67,7 +88,7 @@ export default function TopBar({ dict, lang }: TopBarProps) {
         </div>
 
         {/* Right Section - Icons */}
-        <div className="flex flex-row items-center gap-x-4 text-white">
+        <div className="flex flex-row items-center gap-x-4 text-black dark:text-white">
           <FaSearch className="text-xl hidden md:block" />
           <p className="hidden md:block">Kids</p>
           <IoMdNotifications className="text-3xl hidden md:block" />
@@ -79,9 +100,13 @@ export default function TopBar({ dict, lang }: TopBarProps) {
 
       {/* Mobile Navigation */}
       <div className="flex md:hidden flex-row justify-center items-center mt-4">
-        <div className="flex flex-row items-center justify-center space-x-6 text-white text-lg md:text-lg font-medium">
-          <Link href={`/${lang}/tvshows`}>{dict.tv_shows}</Link>
-          <Link href={`/${lang}/movies`}>{dict.movies}</Link>
+        <div className="flex flex-row items-center justify-center space-x-6 text-lg md:text-lg font-medium">
+          <Link href={`/${lang}/tvshows`} className={getLinkClass(`/${lang}/tvshows`)}>
+            {dict.tv_shows}
+          </Link>
+          <Link href={`/${lang}/movies`} className={getLinkClass(`/${lang}/movies`)}>
+            {dict.movies}
+          </Link>
 
           {/* Extracted DropdownMenu Component for Mobile */}
           <MovieDropdownMenu
