@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaSearch, FaChromecast } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
-import { RiArrowDownSFill } from "react-icons/ri";
 import MovieDropdownMenu from "./MovieDropdownMenu";
 import { DictionaryType } from "@/types/dictionaries";
 import { Locale } from "@/lib/i18n/i18n-config";
+import TopBarRightMenu from "./TopBarRightMenu";
 
 type TopBarProps = {
   dict: DictionaryType;
@@ -15,7 +15,7 @@ type TopBarProps = {
 
 export default function TopBar({ dict, lang }: TopBarProps) {
   return (
-    <div className="z-50 fixed flex flex-col px-5 sm:px-9 lg:px-20 py-6 top-0 left-0 right-0 bg-gradient-to-b from-black lg:from-black/70 to-transparent transition-all duration-300">
+    <div className="z-50 fixed    flex flex-col px-5 sm:px-9 lg:px-20 py-6 top-0 left-0 right-0 bg-gradient-to-b from-black lg:from-black/70 to-transparent transition-all duration-300">
       {/* Main Navigation Container */}
       <div className="flex flex-row justify-between items-center">
         {/* Left Section - Logo & Desktop Menu */}
@@ -67,7 +67,7 @@ export default function TopBar({ dict, lang }: TopBarProps) {
           <IoMdNotifications className="text-3xl hidden md:block" />
           <FaChromecast className="w-9 h-9 sm:w-11 sm:h-11 block md:hidden" />
           <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-b from-white to-[#D9D9D9] rounded-md"></div>
-          <RiArrowDownSFill className="text-2xl hidden md:block" />
+          <TopBarRightMenu />
         </div>
       </div>
 
