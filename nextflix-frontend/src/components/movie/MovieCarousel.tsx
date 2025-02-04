@@ -13,7 +13,7 @@ type MovieCarouselProps = {
 export default function MovieCarousel({ title, movies, lang }: MovieCarouselProps) {
     return (
         <div className='z-50 w-full flex flex-col gap-2'>
-            <h2 className='text-white text-2xl font-bold'>{title}</h2>
+            <h2 className=' text-2xl font-bold'>{title}</h2>
             <Carousel
                 opts={{
                     align: "start",
@@ -27,4 +27,15 @@ export default function MovieCarousel({ title, movies, lang }: MovieCarouselProp
             </Carousel>
         </div>
     )
+}
+
+export const MovieCarouselLoadding = () => {
+    return <div className='w-full animate-pulse flex flex-col gap-4'>
+        <div className='w-1/6 h-10 bg-black/20 dark:bg-gray-800 rounded-lg'></div>
+        <div className=' h-full flex flex-row gap-4'>
+            <div className='w-32 md:w-40 h-52 bg-black/20  dark:bg-gray-800 rounded-lg'></div>
+            <div className='w-32 md:w-40 h-52 bg-black/20 dark:bg-gray-800 rounded-lg'></div>
+            <div className='w-32 md:w-40 h-52 bg-black/20 dark:bg-gray-800 rounded-lg'></div>
+        </div>
+    </div>
 }

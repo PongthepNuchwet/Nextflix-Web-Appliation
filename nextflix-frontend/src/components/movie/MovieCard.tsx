@@ -16,7 +16,7 @@ export default function MovieCard({ movie, lang }: MovieCardProps) {
     const router = useRouter()
 
     const onMovieClick = () => {
-        const new_media_type = movie.media_type === 'movie' ? 'movies' : movie.media_type === 'tv' ? 'tvshows' : 'movie'
+        const new_media_type = movie.media_type === 'movie' ? 'movies' : movie.media_type === 'tv' ? 'tvshows' : 'movies'
         router.push(`/${lang}/${new_media_type}/${movie.id}`)
     }
 
