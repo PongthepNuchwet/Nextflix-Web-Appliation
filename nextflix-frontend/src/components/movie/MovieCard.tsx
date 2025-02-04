@@ -20,6 +20,18 @@ export default function MovieCard({ movie, lang }: MovieCardProps) {
         router.push(`/${lang}/${new_media_type}/${movie.id}`)
     }
 
+    const isNewSeason = (releaseDate?: string): boolean => {
+        if (!releaseDate) return false;
+
+        const releaseDateObj = new Date(releaseDate);
+        const currentDate = new Date();
+        const diffInDays = Math.floor(
+            (currentDate.getTime() - releaseDateObj.getTime()) / (1000 * 60 * 60 * 24)
+        );
+
+        return diffInDays <= 30; // Check if released in the last 30 days
+    };
+
     return (
         <>
             <CarouselItem
@@ -37,19 +49,29 @@ export default function MovieCard({ movie, lang }: MovieCardProps) {
 
                 />
 
-                {/* Top 10 Badge */}
-                {
-                    movie.ranking && movie.ranking <= 10 && (
-                        <div className="absolute top-0 right-0 transition-all duration-300 group-hover:scale-110">
-                            <Image
-                                src={'/vector/card-top10.svg'}
-                                alt={movie.original_title || "Movie"}
-                                width={36}
-                                height={50}
-                            />
-                        </div>
-                    )
-                }
+                {/* Top 10 Badge - Top Right */}
+                {movie.ranking && movie.ranking <= 10 && (
+                    <div className="absolute top-0 right-0 transition-all duration-300 group-hover:scale-110">
+                        <Image
+                            src={"/vector/card-top10.svg"}
+                            alt="Top 10"
+                            width={36}
+                            height={50}
+                        />
+                    </div>
+                )}
+
+                {/* New Season Badge - Bottom Left */}
+                {isNewSeason(movie.release_date ?? movie.first_air_date) && (
+                    <div className="absolute bottom-0 left-0 transition-all duration-300 group-hover:scale-110">
+                        <Image
+                            src={"/vector/card-new-season.svg"}
+                            alt="New Season"
+                            width={50}  // Adjusted width
+                            height={70} // Adjusted height for better visibility
+                        />
+                    </div>
+                )}
             </CarouselItem>
         </>
     )
