@@ -15,7 +15,7 @@ export default async function RootLayout({
 
   return (
     <main>
-      <TapBar dict={dict} />
+      <TapBar dict={dict} lang={lang} />
       {children}
     </main>
   );
