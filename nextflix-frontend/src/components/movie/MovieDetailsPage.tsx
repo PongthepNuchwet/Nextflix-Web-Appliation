@@ -37,7 +37,7 @@ export default function MovieDetailsPage({
                 </div>
 
                 {/* Movie Details */}
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-2  md:gap-6">
                     <MovieDetailsHeader movie={movie} />
                     <MovieDetailsTab movie={movie} mediaType={mediaType} lang={lang} dict={dict} />
                 </div>

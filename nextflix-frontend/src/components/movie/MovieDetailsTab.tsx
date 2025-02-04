@@ -28,7 +28,7 @@ const formatList = (items?: { name: string }[], fallback = "-") => {
 
 export default function MovieDetailsTab({ movie, lang, mediaType, dict }: MovieDetailsTabProps) {
     return (
-        <div className="w-full mt-6">
+        <div className="w-full">
             {/* Tabs */}
             <Tabs defaultValue="overview" className="w-full px-4 md:px-0">
                 <TabsList className="flex flex-row gap-4 items-start justify-start bg-transparent border-b border-transparent ">
