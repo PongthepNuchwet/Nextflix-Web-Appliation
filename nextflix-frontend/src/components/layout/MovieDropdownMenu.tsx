@@ -7,28 +7,54 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "../ui/button";
+import { Locale } from "@/lib/i18n/i18n-config";
 
 type DropdownMenuProps = {
     options: { href: string; label: string }[];
     trigger: string;
+    lang: Locale;
+    toggleLanguage: () => void
+    getLinkClass: (href: string) => string
 };
 
-export default function MovieDropdownMenu({ options, trigger }: DropdownMenuProps) {
+export default function MovieDropdownMenu({ options, trigger, toggleLanguage}: DropdownMenuProps) {
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger  className="flex items-center gap-1   cursor-pointer border-none outline-none">
+            <DropdownMenuTrigger className="flex items-center gap-1   cursor-pointer border-none outline-none">
                 {trigger}
                 <RiArrowDownSFill className="text-lg" />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="  border-none ">
-                {options.map((option, index) => (
-                    <DropdownMenuItem key={index} >
-                        <Link href={option.href} className="w-full block px-4 py-2">
-                            {option.label}
-                        </Link>
-                    </DropdownMenuItem>
-                ))}
+                {options.map((option, index) => {
+
+                    if (option.href.includes('browse-by-language')) {
+                        return (
+                            <DropdownMenuItem key={index} >
+                                <Link href={option.href} className="w-full block px-4 py-2">
+                                    {option.label}
+                                </Link>
+                            </DropdownMenuItem>
+
+                        )
+                    } else {
+                        return (
+                            <DropdownMenuItem key={index} className="cursor-pointer border-none outline-none">
+                                <Button
+                                    key={index}
+                                    variant={'ghost'}
+                                    onClick={toggleLanguage}
+                                    className={`hidden hover:bg-transparent lg:block`}
+                                >
+                                    {option.label}
+                                </Button>
+                            </DropdownMenuItem>
+
+                        )
+
+                    }
+                })}
             </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu >
     );
 }

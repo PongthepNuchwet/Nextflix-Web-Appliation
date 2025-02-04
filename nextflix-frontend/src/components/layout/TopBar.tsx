@@ -3,13 +3,14 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FaSearch, FaChromecast } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
 import MovieDropdownMenu from "./MovieDropdownMenu";
 import { DictionaryType } from "@/types/dictionaries";
 import { Locale } from "@/lib/i18n/i18n-config";
 import TopBarRightMenu from "./TopBarRightMenu";
+import { Button } from "../ui/button";
 
 type TopBarProps = {
   dict: DictionaryType;
@@ -18,13 +19,20 @@ type TopBarProps = {
 
 export default function TopBar({ dict, lang }: TopBarProps) {
   const pathname = usePathname();
+  const router = useRouter();
 
-  // Function to determine active link styles
-  const getLinkClass = (href: string) => {
+  const getLinkClass = (href: string): string => {
     return pathname.startsWith(href)
       ? "text-black dark:text-white font-semibold"
       : "text-muted-foreground hover:dark:text-white hover:text-black transition-all";
   };
+
+  const toggleLanguage = () => {
+    const newLang = lang === "en" ? "th" : "en";
+    const newPath = pathname.replace(`/${lang}/`, `/${newLang}/`);
+    router.push(newPath);
+  };
+
 
   return (
     <div className="z-50 fixed flex flex-col px-5 sm:px-9 lg:px-20 py-6 top-0 left-0 right-0 bg-white dark:bg-transparent dark:bg-gradient-to-b from-black lg:from-black/70 to-transparent transition-all duration-300">
@@ -69,14 +77,22 @@ export default function TopBar({ dict, lang }: TopBarProps) {
             <Link href={`/${lang}/my-list`} className={`hidden lg:block ${getLinkClass(`/${lang}/my-list`)}`}>
               {dict.my_list}
             </Link>
-            <Link href={`/${lang}/browse-by-language`} className={`hidden lg:block ${getLinkClass(`/${lang}/browse-by-language`)}`}>
+            <Button
+              variant={'ghost'}
+              onClick={toggleLanguage}
+              className={`hidden hover:bg-transparent lg:block ${getLinkClass(`/${lang}/browse-by-language`)}`}
+            >
               {dict.browse_by_language}
-            </Link>
+            </Button>
 
             {/* Extracted DropdownMenu Component */}
             <div className="hidden md:block lg:hidden">
               <MovieDropdownMenu
                 trigger={dict.categories}
+                getLinkClass={getLinkClass}
+                lang={lang}
+                toggleLanguage={toggleLanguage}
+
                 options={[
                   { href: `/${lang}/new-popular`, label: dict.new_popular },
                   { href: `/${lang}/my-list`, label: dict.my_list },
@@ -116,6 +132,9 @@ export default function TopBar({ dict, lang }: TopBarProps) {
               { href: `/${lang}/my-list`, label: dict.my_list },
               { href: `/${lang}/browse-by-language`, label: dict.browse_by_language },
             ]}
+            getLinkClass={getLinkClass}
+            lang={lang}
+            toggleLanguage={toggleLanguage}
           />
         </div>
       </div>
