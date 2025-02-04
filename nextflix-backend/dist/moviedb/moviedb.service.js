@@ -98,6 +98,30 @@ let MoviedbService = MoviedbService_1 = class MoviedbService {
             throw error_handler_util_1.ErrorHandler.handle(error, `Failed to fetch teaser videos for ${params.mediaType} ID: ${params.id}`);
         }
     }
+    async getPopularMovies(mediaType, lang, page = 1) {
+        const url = `${this.BASE_URL}/${mediaType}/popular?language=${lang}&page=${page}`;
+        try {
+            const response = await (0, rxjs_1.firstValueFrom)(this.httpService.get(url, {
+                headers: this.getHeaders(),
+            }));
+            return response.data.results.map((movie) => this.transformMovieData(movie));
+        }
+        catch (error) {
+            throw error_handler_util_1.ErrorHandler.handle(error, `Failed to fetch popular ${mediaType}s`);
+        }
+    }
+    async getUpcomingMovies(lang, page = 1) {
+        const url = `${this.BASE_URL}/movie/upcoming?language=${lang}&page=${page}`;
+        try {
+            const response = await (0, rxjs_1.firstValueFrom)(this.httpService.get(url, {
+                headers: this.getHeaders(),
+            }));
+            return response.data.results.map((movie) => this.transformMovieData(movie));
+        }
+        catch (error) {
+            throw error_handler_util_1.ErrorHandler.handle(error, 'Failed to fetch upcoming movies');
+        }
+    }
 };
 exports.MoviedbService = MoviedbService;
 exports.MoviedbService = MoviedbService = MoviedbService_1 = __decorate([

@@ -11,6 +11,8 @@ import { TrendingMediaDto } from './dto/trending-media.dto';
 import { QueryMediaDto } from './dto/detail-media.dto';
 import { Video } from './interfaces/video-movie.interface';
 import { MediaParams } from './interfaces/trending-media-params.interface';
+import { PopularMediaDto } from './dto/popular-media.dto';
+import { UpcomingMovieDto } from './dto/upcoming-movie.dto';
 
 @Controller('moviedb')
 export class MoviedbController {
@@ -58,5 +60,21 @@ export class MoviedbController {
       this.getQueryParams(query),
     );
     return video || null;
+  }
+
+  @Get('popular')
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async getPopularMovies(@Query() query: PopularMediaDto): Promise<Movie[]> {
+    return this.moviesService.getPopularMovies(
+      query.mediaType,
+      query.lang,
+      query.page,
+    );
+  }
+
+  @Get('upcoming')
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async getUpcomingMovies(@Query() query: UpcomingMovieDto): Promise<Movie[]> {
+    return this.moviesService.getUpcomingMovies(query.lang, query.page);
   }
 }

@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const moviedb_service_1 = require("./moviedb.service");
 const trending_media_dto_1 = require("./dto/trending-media.dto");
 const detail_media_dto_1 = require("./dto/detail-media.dto");
+const popular_media_dto_1 = require("./dto/popular-media.dto");
+const upcoming_movie_dto_1 = require("./dto/upcoming-movie.dto");
 let MoviedbController = class MoviedbController {
     constructor(moviesService) {
         this.moviesService = moviesService;
@@ -49,6 +51,12 @@ let MoviedbController = class MoviedbController {
     async getMediaVideos(query) {
         const video = await this.moviesService.getMediaVideos(this.getQueryParams(query));
         return video || null;
+    }
+    async getPopularMovies(query) {
+        return this.moviesService.getPopularMovies(query.mediaType, query.lang, query.page);
+    }
+    async getUpcomingMovies(query) {
+        return this.moviesService.getUpcomingMovies(query.lang, query.page);
     }
 };
 exports.MoviedbController = MoviedbController;
@@ -84,6 +92,22 @@ __decorate([
     __metadata("design:paramtypes", [detail_media_dto_1.QueryMediaDto]),
     __metadata("design:returntype", Promise)
 ], MoviedbController.prototype, "getMediaVideos", null);
+__decorate([
+    (0, common_1.Get)('popular'),
+    (0, common_1.UsePipes)(new common_1.ValidationPipe({ transform: true })),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [popular_media_dto_1.PopularMediaDto]),
+    __metadata("design:returntype", Promise)
+], MoviedbController.prototype, "getPopularMovies", null);
+__decorate([
+    (0, common_1.Get)('upcoming'),
+    (0, common_1.UsePipes)(new common_1.ValidationPipe({ transform: true })),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [upcoming_movie_dto_1.UpcomingMovieDto]),
+    __metadata("design:returntype", Promise)
+], MoviedbController.prototype, "getUpcomingMovies", null);
 exports.MoviedbController = MoviedbController = __decorate([
     (0, common_1.Controller)('moviedb'),
     __metadata("design:paramtypes", [moviedb_service_1.MoviedbService])

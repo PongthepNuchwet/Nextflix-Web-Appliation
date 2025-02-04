@@ -18,4 +18,6 @@ export declare class MoviedbService {
     getMovieDetails(params: MediaParams): Promise<MovieDetail>;
     getMediaImages(params: MediaParams): Promise<MovieImages>;
     getMediaVideos(params: MediaParams): Promise<Video | null>;
+    getPopularMovies(mediaType: 'movie' | 'tv', lang: string, page?: number): Promise<Movie[]>;
+    getUpcomingMovies(lang: string, page?: number): Promise<Movie[]>;
 }

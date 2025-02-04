@@ -135,4 +135,44 @@ export class MoviedbService {
       );
     }
   }
+
+  async getPopularMovies(
+    mediaType: 'movie' | 'tv',
+    lang: string,
+    page: number = 1,
+  ): Promise<Movie[]> {
+    const url = `${this.BASE_URL}/${mediaType}/popular?language=${lang}&page=${page}`;
+
+    try {
+      const response = await firstValueFrom(
+        this.httpService.get<TrendingApiResponse>(url, {
+          headers: this.getHeaders(),
+        }),
+      );
+
+      return response.data.results.map((movie) =>
+        this.transformMovieData(movie),
+      );
+    } catch (error) {
+      throw ErrorHandler.handle(error, `Failed to fetch popular ${mediaType}s`);
+    }
+  }
+
+  async getUpcomingMovies(lang: string, page: number = 1): Promise<Movie[]> {
+    const url = `${this.BASE_URL}/movie/upcoming?language=${lang}&page=${page}`;
+
+    try {
+      const response = await firstValueFrom(
+        this.httpService.get<TrendingApiResponse>(url, {
+          headers: this.getHeaders(),
+        }),
+      );
+
+      return response.data.results.map((movie) =>
+        this.transformMovieData(movie),
+      );
+    } catch (error) {
+      throw ErrorHandler.handle(error, 'Failed to fetch upcoming movies');
+    }
+  }
 }
