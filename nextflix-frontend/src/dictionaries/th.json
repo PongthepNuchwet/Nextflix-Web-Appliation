@@ -22,5 +22,8 @@
     "genres": "ประเภท",
     "production": "การผลิต",
     "country": "ประเทศ",
-    "language": "ภาษา"
+    "language": "ภาษา",
+    "popular_movies": "ภาพยนตร์ยอดนิยม",
+    "popular_tv_shows": "ซีรีย์ยอดนิยม",
+    "upcoming_movies": "ภาพยนตร์ที่จะฉายเร็วๆ นี้"
 }

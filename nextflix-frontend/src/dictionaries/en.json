@@ -22,5 +22,8 @@
     "genres": "Genres",
     "production": "Production",
     "country": "Country",
-    "language": "Language"
+    "language": "Language",
+    "popular_movies": "Popular Movies",
+    "popular_tv_shows": "Popular TV Shows",
+    "upcoming_movies": "Upcoming Movies"
 }
