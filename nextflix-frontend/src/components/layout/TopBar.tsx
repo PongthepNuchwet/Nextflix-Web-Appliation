@@ -6,14 +6,16 @@ import { IoMdNotifications } from "react-icons/io";
 import { RiArrowDownSFill } from "react-icons/ri";
 import MovieDropdownMenu from "./MovieDropdownMenu";
 import { DictionaryType } from "@/types/dictionaries";
+import { Locale } from "@/lib/i18n/i18n-config";
 
 type TopBarProps = {
-  dict: DictionaryType
-}
-export default function TopBar({ dict }: TopBarProps) {
+  dict: DictionaryType;
+  lang: Locale;
+};
 
+export default function TopBar({ dict, lang }: TopBarProps) {
   return (
-    <div className="z-50 fixed flex flex-col px-5 sm:px-9 lg:px-20 py-6 top-0 left-0 right-0 bg-gradient-to-b from-black lg:from-black/70 to-transparent  transition-all duration-300">
+    <div className="z-50 fixed flex flex-col px-5 sm:px-9 lg:px-20 py-6 top-0 left-0 right-0 bg-gradient-to-b from-black lg:from-black/70 to-transparent transition-all duration-300">
       {/* Main Navigation Container */}
       <div className="flex flex-row justify-between items-center">
         {/* Left Section - Logo & Desktop Menu */}
@@ -40,17 +42,19 @@ export default function TopBar({ dict }: TopBarProps) {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex flex-row items-center space-x-6 text-white text-xl">
-            <Link href="/home" className="hidden xl:block">{dict.home}</Link>
-            <Link href="/tvshows">{dict.tv_shows}</Link>
-            <Link href="/movies">{dict.movies}</Link>
+            <Link href={`/${lang}/home`} className="hidden xl:block">
+              {dict.home}
+            </Link>
+            <Link href={`/${lang}/tvshows`}>{dict.tv_shows}</Link>
+            <Link href={`/${lang}/movies`}>{dict.movies}</Link>
 
             {/* Extracted DropdownMenu Component */}
             <MovieDropdownMenu
               trigger={dict.categories}
               options={[
-                { href: "/new-popular", label: dict.new_popular },
-                { href: "/my-list", label: dict.my_list },
-                { href: "/browse-by-language", label: dict.browse_by_language },
+                { href: `/${lang}/new-popular`, label: dict.new_popular },
+                { href: `/${lang}/my-list`, label: dict.my_list },
+                { href: `/${lang}/browse-by-language`, label: dict.browse_by_language },
               ]}
             />
           </div>
@@ -70,16 +74,16 @@ export default function TopBar({ dict }: TopBarProps) {
       {/* Mobile Navigation */}
       <div className="flex md:hidden flex-row justify-center items-center mt-4">
         <div className="flex flex-row items-center justify-center space-x-6 text-white text-sm md:text-lg font-medium">
-          <Link href="/tvshows">{dict.tv_shows}</Link>
-          <Link href="/moview">{dict.movies}</Link>
+          <Link href={`/${lang}/tvshows`}>{dict.tv_shows}</Link>
+          <Link href={`/${lang}/movies`}>{dict.movies}</Link>
 
           {/* Extracted DropdownMenu Component for Mobile */}
           <MovieDropdownMenu
             trigger={dict.categories}
             options={[
-              { href: "/new-popular", label: dict.new_popular },
-              { href: "/my-list", label: dict.my_list },
-              { href: "/browse-by-language", label: dict.browse_by_language },
+              { href: `/${lang}/new-popular`, label: dict.new_popular },
+              { href: `/${lang}/my-list`, label: dict.my_list },
+              { href: `/${lang}/browse-by-language`, label: dict.browse_by_language },
             ]}
           />
         </div>
