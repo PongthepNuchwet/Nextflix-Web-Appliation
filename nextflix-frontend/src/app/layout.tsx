@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider"
+import { Noto_Sans_Thai} from 'next/font/google'
+
+const noto_sans_thai = Noto_Sans_Thai({
+  subsets: ['latin'],
+  variable: '--font-noto-sans-thai',
+  display: 'swap',
+})
 
 const netflix_sans = localFont({
   src: [
@@ -41,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${netflix_sans.variable} antialiased bg-white dark:bg-black `}>
+      <body className={`${netflix_sans.variable} ${noto_sans_thai.className} antialiased bg-white dark:bg-black `}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
