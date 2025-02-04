@@ -10,13 +10,13 @@ import MovieCarousel from "./MovieCarousel";
 import MovieBackground from "./MovieBackground";
 import MovieLogo from "./MovieLogo";
 
-type Props = {
+type MoviePageProps = {
   movies: Movie[];
   dict: DictionaryType
   lang: Locale;
 };
 
-export default function MoviePage({ movies, dict, lang }: Props) {
+export default function MoviePage({ movies, dict, lang }: MoviePageProps) {
 
   const topMovie = movies.reduce((prev, current) =>
     current.popularity > prev.popularity ? current : prev
