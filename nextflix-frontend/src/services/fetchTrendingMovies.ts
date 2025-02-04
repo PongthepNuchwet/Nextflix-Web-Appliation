@@ -14,6 +14,7 @@ export const getTrendingMovies = async ({ mediaType, frequency, lang }: Props): 
             `${process.env.NEXT_PUBLIC_API_HOST}/moviedb/trending?mediaType=${mediaType}&frequency=${frequency}&lang=${lang}`,
             {
                 method: 'GET',
+                next: { revalidate: 60 }
             }
         );
 
