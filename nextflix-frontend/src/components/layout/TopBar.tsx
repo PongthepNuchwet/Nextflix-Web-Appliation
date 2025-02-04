@@ -41,22 +41,28 @@ export default function TopBar({ dict, lang }: TopBarProps) {
           />
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex flex-row items-center space-x-6 text-white text-xl">
+          <div className="hidden md:flex flex-row items-center space-x-6 text-white text-md">
             <Link href={`/${lang}/home`} className="hidden xl:block">
               {dict.home}
             </Link>
             <Link href={`/${lang}/tvshows`}>{dict.tv_shows}</Link>
             <Link href={`/${lang}/movies`}>{dict.movies}</Link>
+            <Link href={`/${lang}/new-popular`} className="hidden lg:block">{dict.new_popular}</Link>
+            <Link href={`/${lang}/my-list`} className="hidden lg:block">{dict.my_list}</Link>
+            <Link href={`/${lang}/browse-by-language`} className="hidden lg:block">{dict.browse_by_language}</Link>
 
             {/* Extracted DropdownMenu Component */}
-            <MovieDropdownMenu
-              trigger={dict.categories}
-              options={[
-                { href: `/${lang}/new-popular`, label: dict.new_popular },
-                { href: `/${lang}/my-list`, label: dict.my_list },
-                { href: `/${lang}/browse-by-language`, label: dict.browse_by_language },
-              ]}
-            />
+            <div className="hidden md:block lg:hidden">
+              <MovieDropdownMenu
+
+                trigger={dict.categories}
+                options={[
+                  { href: `/${lang}/new-popular`, label: dict.new_popular },
+                  { href: `/${lang}/my-list`, label: dict.my_list },
+                  { href: `/${lang}/browse-by-language`, label: dict.browse_by_language },
+                ]}
+              />
+            </div>
           </div>
         </div>
 
@@ -73,7 +79,7 @@ export default function TopBar({ dict, lang }: TopBarProps) {
 
       {/* Mobile Navigation */}
       <div className="flex md:hidden flex-row justify-center items-center mt-4">
-        <div className="flex flex-row items-center justify-center space-x-6 text-white text-sm md:text-lg font-medium">
+        <div className="flex flex-row items-center justify-center space-x-6 text-white text-lg md:text-lg font-medium">
           <Link href={`/${lang}/tvshows`}>{dict.tv_shows}</Link>
           <Link href={`/${lang}/movies`}>{dict.movies}</Link>
 
