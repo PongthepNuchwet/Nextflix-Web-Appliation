@@ -67,8 +67,8 @@ export default function MovieCard({ movie, lang }: MovieCardProps) {
                         <Image
                             src={"/vector/card-new-season.svg"}
                             alt="New Season"
-                            width={50}  // Adjusted width
-                            height={70} // Adjusted height for better visibility
+                            width={50}  
+                            height={70} 
                         />
                     </div>
                 )}
