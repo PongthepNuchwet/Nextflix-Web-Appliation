@@ -15,5 +15,12 @@
     "browse_by_language": "Browse by Language",
     "in": "IN",
     "today": "Today",
-    "categories": "Categories"
+    "categories": "Categories",
+    "overview": "Overview",
+    "video": "video",
+    "no_description_available": "No description available.",
+    "genres": "Genres",
+    "production": "Production",
+    "country": "Country",
+    "language": "Language"
 }

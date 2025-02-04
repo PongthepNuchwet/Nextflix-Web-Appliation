@@ -15,5 +15,12 @@
     "browse_by_language": "เรียกดูตามภาษา",
     "in": "ใน",
     "today": "วันนี้",
-    "categories": "ประเภทอื่นๆ"
+    "categories": "ประเภทอื่นๆ",
+    "overview": "ภาพรวม",
+    "video": "วิดีโอ",
+    "no_description_available": "ไม่มีคำอธิบายที่ใช้ได้",
+    "genres": "ประเภท",
+    "production": "การผลิต",
+    "country": "ประเทศ",
+    "language": "ภาษา"
 }
