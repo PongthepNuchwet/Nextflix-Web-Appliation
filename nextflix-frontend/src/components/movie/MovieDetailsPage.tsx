@@ -28,7 +28,7 @@ export default function MovieDetailsPage({
                 <div className="flex justify-center md:justify-start">
                     <div className="hidden md:block w-3/5 sm:w-4/5 h-[80vh] relative bg-gray-800 rounded-lg overflow-hidden">
                         <Image
-                            src={movie.backdrop_path}
+                            src={movie.poster_path}
                             alt={movie.title || "Movie Poster"}
                             fill
                             className="object-cover object-center "
