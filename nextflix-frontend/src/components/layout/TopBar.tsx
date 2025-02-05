@@ -28,6 +28,7 @@ export default function TopBar({ dict, lang }: TopBarProps) {
   };
 
   const toggleLanguage = () => {
+    if (!pathname) return;
     const newLang = lang === "en" ? "th" : "en";
     const newPath = pathname.replace(`/${lang}/`, `/${newLang}/`);
     router.push(newPath);
