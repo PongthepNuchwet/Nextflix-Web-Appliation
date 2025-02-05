@@ -29,7 +29,7 @@ export default function MoviePage({ movies, dict, lang }: MoviePageProps) {
       <MovieBackground imagePath={topMovie.backdrop_path} title={topMovie.title || 'Movie'} />
 
       {/* Content Section */}
-      <div className="absolute bottom-0 left-0 right-0 top-0  p-0 pt-20  md:pl-10  z-20 text-white flex flex-col items-start justify-end">
+      <div className="absolute bottom-0 left-0 right-0 top-0  p-0 pt-20  pl-4 md:pl-10  z-20 text-white flex flex-col items-start justify-end">
 
         <div className="grow flex flex-col justify-end md:justify-center items-center md:items-start gap-2 md:gap-4 md:max-w-[35vw] px-10 md:px-0 mb-0">
           {/* Movie Logo (With Fallback) */}
@@ -53,7 +53,7 @@ export default function MoviePage({ movies, dict, lang }: MoviePageProps) {
           <MovieActionButtons movie={topMovie} dict={dict} lang={lang} />
         </div>
 
-        <div className=" z-20 md:pb-10  w-full bg-gradient-to-t from-black to-transparent">
+        <div className="z-20 md:pb-10  w-full bg-gradient-to-t from-black to-transparent">
           <MovieCarousel title="Popular on Netflix" movies={movies} lang={lang} />
         </div>
       </div>
