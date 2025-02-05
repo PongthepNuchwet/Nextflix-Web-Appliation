@@ -54,7 +54,7 @@ export default function MoviePage({ movies, dict, lang }: MoviePageProps) {
         </div>
 
         <div className="z-20 md:pb-10  w-full bg-gradient-to-t from-black to-transparent">
-          <MovieCarousel title="Popular on Netflix" movies={movies} lang={lang} />
+          <MovieCarousel title={dict.popular_on_netflix} movies={movies} lang={lang} />
         </div>
       </div>
     </div>

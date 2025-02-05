@@ -25,5 +25,6 @@
     "language": "ภาษา",
     "popular_movies": "ภาพยนตร์ยอดนิยม",
     "popular_tv_shows": "ซีรีย์ยอดนิยม",
-    "upcoming_movies": "ภาพยนตร์ที่จะฉายเร็วๆ นี้"
+    "upcoming_movies": "ภาพยนตร์ที่จะฉายเร็วๆ นี้",
+    "popular_on_netflix": "ได้รับความนิยมบน Netflix"
 }

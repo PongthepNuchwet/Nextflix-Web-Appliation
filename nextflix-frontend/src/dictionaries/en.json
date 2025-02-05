@@ -25,5 +25,6 @@
     "language": "Language",
     "popular_movies": "Popular Movies",
     "popular_tv_shows": "Popular TV Shows",
-    "upcoming_movies": "Upcoming Movies"
+    "upcoming_movies": "Upcoming Movies",
+    "popular_on_netflix": "Popular on Netflix"
 }
