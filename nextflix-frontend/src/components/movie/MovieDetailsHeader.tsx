@@ -9,43 +9,52 @@ type MovieDetailsHeaderProps = {
 };
 
 export default function MovieDetailsHeader({ movie }: MovieDetailsHeaderProps) {
+    const title = movie.name ?? movie.title;
     const isTVShow = !!movie.number_of_seasons;
+    const releaseYear = getYear(movie.release_date ?? movie.last_air_date);
+    const seasonsInfo = isTVShow ? formatSeasons(movie.number_of_seasons, movie.number_of_episodes) : "";
+    const runtimeInfo = !isTVShow && movie.runtime ? `| ${formatRuntime(movie.runtime)}` : "";
 
     return (
         <div className="flex flex-col justify-end items-start md:items-start relative h-[40vh] md:h-auto">
             {/* Movie Backdrop (Mobile Only) */}
-            {movie.backdrop_path && (
-                <Image
-                    src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                    alt={movie.name ?? movie.title}
-                    fill
-                    className="object-cover object-center md:hidden"
-                />
-            )}
+            {movie.backdrop_path && <MovieBackdrop imagePath={movie.backdrop_path} title={title} />}
 
             {/* Movie Information */}
             <div className="w-full px-4 md:px-0 flex flex-row justify-between gap-2 dark:bg-gradient-to-t from-black to-transparent z-10">
                 <div className="flex flex-col gap-2">
-                    <h1 className="text-4xl font-bold shadow-2xl">{movie.name ?? movie.title}</h1>
-
-                    {/* Release Year & Runtime / Seasons */}
+                    <h1 className="text-4xl font-bold shadow-2xl">{title}</h1>
                     <p className="text-[#7e7e7e] font-medium text-sm">
-                        {getYear(movie.release_date ?? movie.last_air_date)}{" "}
-                        {isTVShow
-                            ? `| ${movie.number_of_seasons} Season${movie.number_of_seasons ?? 0 > 1 ? "s" : ""}`
-                            : movie.runtime
-                                ? `| ${formatRuntime(movie.runtime)}`
-                                : ""}
-                        {movie.number_of_episodes ? ` | ${movie.number_of_episodes} Episodes` : ""}
+                        {releaseYear} {seasonsInfo} {runtimeInfo}
                     </p>
                 </div>
 
                 {/* Movie Rating */}
-                <div className="flex flex-row gap-2 text-2xl items-center font-medium">
-                    {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
-                    <IoStar className="text-yellow-500" />
-                </div>
+                <MovieRating rating={movie.vote_average} />
             </div>
         </div>
     );
 }
+
+const MovieBackdrop = ({ imagePath, title }: { imagePath: string; title: string }) => (
+    <Image
+        src={`https://image.tmdb.org/t/p/original${imagePath}`}
+        alt={title}
+        fill
+        className="object-cover object-center md:hidden"
+    />
+);
+
+const MovieRating = ({ rating }: { rating?: number }) => (
+    <div className="flex flex-row gap-2 text-2xl items-center font-medium">
+        {rating ? rating.toFixed(1) : "N/A"}
+        <IoStar className="text-yellow-500" />
+    </div>
+);
+
+const formatSeasons = (seasons?: number, episodes?: number) => {
+    if (!seasons) return "";
+    const seasonText = seasons > 1 ? "Seasons" : "Season";
+    const episodeText = episodes ? ` | ${episodes} Episodes` : "";
+    return `| ${seasons} ${seasonText}${episodeText}`;
+};
