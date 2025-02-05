@@ -7,7 +7,7 @@ type MovieTop10BadgeProps = {
 export default function MovieTop10Badge({ height, width }: MovieTop10BadgeProps) {
     return (
         <Image
-            src={'/vector/Top10.svg'}
+            src={'/vector/top10-badge.svg'}
             width={width ?? 44}
             height={height ?? 44}
             className='m-0'
