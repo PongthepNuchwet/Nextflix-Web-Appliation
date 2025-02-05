@@ -34,7 +34,7 @@ export default function MovieDropdownMenu({ options, trigger, toggleLanguage }: 
                                 className="cursor-pointer border-none outline-none py-3 "
                                 onClick={toggleLanguage}
                             >
-                               <p className="w-full block px-4 py-2"> {option.label}</p>
+                                <p className="w-full block px-4 py-2"> {option.label}</p>
                             </DropdownMenuItem>
                         )
                     } else {
