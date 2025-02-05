@@ -29,7 +29,7 @@ export default async function MovieLogo({ movie, lang, dict }: MovieLogoProps) {
         return (
             <Suspense fallback={<div>{dict.loading}</div>}>
                 <Image
-                    src={`https://image.tmdb.org/t/p/original${logo.file_path}`}
+                    src={`${logo.file_path}`}
                     width={logo.width}
                     height={logo.height}
                     className="w-[70vw] md:w-[35vw] animate-fade-up max-h-[200px]"

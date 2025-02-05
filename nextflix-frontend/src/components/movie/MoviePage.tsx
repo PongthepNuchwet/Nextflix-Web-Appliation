@@ -32,7 +32,7 @@ export default function MoviePage({ movies, dict, lang }: MoviePageProps) {
       <div className="absolute bottom-0 left-0 right-0 top-0  p-0 pt-20  pl-4 md:pl-10  z-20 text-white flex flex-col items-start justify-end">
 
         <div className="grow flex flex-col justify-end md:justify-center items-center md:items-start gap-2 md:gap-4 md:max-w-[35vw] px-10 md:px-0 mb-0">
-          {/* Movie Logo (With Fallback) */}
+          {/* Movie Logo  */}
           <MovieLogo movie={topMovie} dict={dict} lang={lang} />
 
 
