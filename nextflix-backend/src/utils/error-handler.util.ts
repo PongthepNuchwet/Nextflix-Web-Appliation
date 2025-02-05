@@ -12,7 +12,7 @@ export class ErrorHandler {
       );
 
       throw new HttpException(
-        new Error(error.message || message),
+        message || error.message,
         error.response?.status || HttpStatus.BAD_REQUEST,
       );
     }

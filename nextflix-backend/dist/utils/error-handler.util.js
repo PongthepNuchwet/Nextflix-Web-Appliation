@@ -7,7 +7,7 @@ class ErrorHandler {
     static handle(error, message) {
         if (error instanceof axios_1.AxiosError) {
             this.logger.error(`Axios Error: ${message}: ${error.message}`, error.response?.data);
-            throw new common_1.HttpException(new Error(error.message || message), error.response?.status || common_1.HttpStatus.BAD_REQUEST);
+            throw new common_1.HttpException(message || error.message, error.response?.status || common_1.HttpStatus.BAD_REQUEST);
         }
         this.logger.error(`Unknown error: ${message}`, error);
         throw new common_1.HttpException(new Error('An unknown error occurred'), common_1.HttpStatus.INTERNAL_SERVER_ERROR);

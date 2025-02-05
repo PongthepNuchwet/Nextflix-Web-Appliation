@@ -43,14 +43,25 @@ let MoviedbController = class MoviedbController {
         }));
     }
     async getMovieDetails(query) {
-        return this.moviesService.getMovieDetails(this.getQueryParams(query));
+        const movie = await this.moviesService.getMovieDetails(this.getQueryParams(query));
+        if (!movie) {
+            throw new common_1.NotFoundException(`No details found for ${query.mediaType} with ID ${query.id}`);
+        }
+        return movie;
     }
     async getMovieImages(query) {
-        return this.moviesService.getMediaImages(this.getQueryParams(query));
+        const images = await this.moviesService.getMediaImages(this.getQueryParams(query));
+        if (!images) {
+            throw new common_1.NotFoundException(`No images found for ${query.mediaType} with ID ${query.id}`);
+        }
+        return images;
     }
     async getMediaVideos(query) {
         const video = await this.moviesService.getMediaVideos(this.getQueryParams(query));
-        return video || null;
+        if (!video) {
+            throw new common_1.NotFoundException(`No videos found for ${query.mediaType} with ID ${query.id}`);
+        }
+        return video;
     }
     async getPopularMovies(query) {
         return this.moviesService.getPopularMovies(query.mediaType, query.lang, query.page);

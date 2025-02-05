@@ -12,7 +12,7 @@ export declare class MoviedbController {
     getTrendingMovies(query: TrendingMediaDto): Promise<Movie[]>;
     getMovieDetails(query: QueryMediaDto): Promise<import("./interfaces/detail-movie.interface").MovieDetail>;
     getMovieImages(query: QueryMediaDto): Promise<import("./interfaces/images-movie.interface").MovieImages>;
-    getMediaVideos(query: QueryMediaDto): Promise<Video | null>;
+    getMediaVideos(query: QueryMediaDto): Promise<Video>;
     getPopularMovies(query: PopularMediaDto): Promise<Movie[]>;
     getUpcomingMovies(query: UpcomingMovieDto): Promise<Movie[]>;
 }

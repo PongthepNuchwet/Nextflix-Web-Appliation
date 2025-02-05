@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  NotFoundException,
   Query,
   UsePipes,
   ValidationPipe,
@@ -44,22 +45,46 @@ export class MoviedbController {
   @Get('details')
   @UsePipes(new ValidationPipe({ transform: true }))
   async getMovieDetails(@Query() query: QueryMediaDto) {
-    return this.moviesService.getMovieDetails(this.getQueryParams(query));
+    const movie = await this.moviesService.getMovieDetails(
+      this.getQueryParams(query),
+    );
+    if (!movie) {
+      throw new NotFoundException(
+        `No details found for ${query.mediaType} with ID ${query.id}`,
+      );
+    }
+    return movie;
   }
 
   @Get('images')
   @UsePipes(new ValidationPipe({ transform: true }))
   async getMovieImages(@Query() query: QueryMediaDto) {
-    return this.moviesService.getMediaImages(this.getQueryParams(query));
+    const images = await this.moviesService.getMediaImages(
+      this.getQueryParams(query),
+    );
+
+    if (!images) {
+      throw new NotFoundException(
+        `No images found for ${query.mediaType} with ID ${query.id}`,
+      );
+    }
+
+    return images;
   }
 
   @Get('videos')
   @UsePipes(new ValidationPipe({ transform: true }))
-  async getMediaVideos(@Query() query: QueryMediaDto): Promise<Video | null> {
+  async getMediaVideos(@Query() query: QueryMediaDto): Promise<Video> {
     const video = await this.moviesService.getMediaVideos(
       this.getQueryParams(query),
     );
-    return video || null;
+
+    if (!video) {
+      throw new NotFoundException(
+        `No videos found for ${query.mediaType} with ID ${query.id}`,
+      );
+    }
+    return video;
   }
 
   @Get('popular')
