@@ -19,7 +19,12 @@ export default function TopBarRightMenu() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-2  border-none">
+                <Button
+                    variant="ghost"
+                    className="flex items-center gap-2  border-none"
+                    aria-label="Open theme menu"
+                    title="Open theme menu"
+                >
                     <RiArrowDownSFill className="text-2xl" />
                 </Button>
             </DropdownMenuTrigger>
