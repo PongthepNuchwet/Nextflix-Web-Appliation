@@ -46,36 +46,31 @@ export default function MovieCard({ movie, lang, mediaType }: MovieCardProps) {
                     src={movie.poster_path}
                     alt={movie.original_title || "Movie"}
                     fill
-                    quality={20}
+                    quality={50}
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                     className="object-cover object-center"
 
                 />
 
-                {/* Top 10 Badge - Top Right */}
-                {movie.ranking && movie.ranking <= 10 && (
-                    <div className="absolute top-0 right-0 transition-all duration-300 group-hover:scale-110">
-                        <Image
-                            src={"/vector/card-top10.svg"}
-                            alt="Top 10"
-                            width={36}
-                            height={50}
-                        />
-                    </div>
-                )}
+                {/* Top 10 Badge */}
+                {movie.ranking && movie.ranking <= 10 && <TopBadge />}
 
-                {/* New Season Badge - Bottom Left */}
-                {isNewSeason(movie.release_date ?? movie.first_air_date) && (
-                    <div className="absolute bottom-0 left-0 transition-all duration-300 group-hover:scale-110">
-                        <Image
-                            src={"/vector/card-new-season.svg"}
-                            alt="New Season"
-                            width={50}
-                            height={70}
-                        />
-                    </div>
-                )}
+                {/* New Season Badge */}
+                {isNewSeason(movie.release_date ?? movie.first_air_date) && <NewSeasonBadge />}
+
             </CarouselItem>
         </>
     )
 }
+
+const TopBadge = () => (
+    <div className="absolute top-0 right-0 transition-all duration-300 group-hover:scale-110">
+        <Image src="/vector/card-top10.svg" alt="Top 10" width={36} height={50} />
+    </div>
+);
+
+const NewSeasonBadge = () => (
+    <div className="absolute bottom-0 left-0 transition-all duration-300 group-hover:scale-110">
+        <Image src="/vector/card-new-season.svg" alt="New Season" width={50} height={70} />
+    </div>
+);
