@@ -1,7 +1,7 @@
 import { getMovieImages } from '@/services/fetchMovieImages.ts'
 import { Locale } from '@/lib/i18n/i18n-config'
 import { Movie } from '@/types/movie.interface'
-import React, { Suspense } from 'react'
+import React from 'react'
 import { DictionaryType } from '@/types/dictionaries'
 import Image from 'next/image'
 import NoData from '../NoData'
@@ -27,16 +27,14 @@ export default async function MovieLogo({ movie, lang, dict }: MovieLogoProps) {
         const logo = movieImages.logos[0];
 
         return (
-            <Suspense fallback={<div>{dict.loading}</div>}>
-                <Image
-                    src={`${logo.file_path}`}
-                    width={logo.width}
-                    height={logo.height}
-                    className="w-[70vw] md:w-[35vw] animate-fade-up max-h-[200px]"
-                    alt={movie.title || "Movie Logo"}
-                    priority
-                />
-            </Suspense>
+            <Image
+                src={`${logo.file_path}`}
+                width={logo.width}
+                height={logo.height}
+                className="w-[70vw] md:w-[35vw] animate-fade-up max-h-[200px]"
+                alt={movie.title || "Movie Logo"}
+                priority
+            />
         );
     } catch (error) {
         console.error("Error fetching movie images:", error);
