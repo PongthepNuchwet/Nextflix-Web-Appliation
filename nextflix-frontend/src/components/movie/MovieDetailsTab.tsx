@@ -1,11 +1,16 @@
-import React, { Suspense } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import React, { Suspense, lazy } from "react";
+import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { detailsMovie } from "@/types/detailMovie.interface";
-import MovieVideo, { MovieVideoLoading } from "./MovieVideo";
 import { Locale } from "@/lib/i18n/i18n-config";
 import { mediaType } from "@/types/movie.interface";
 import { DictionaryType } from "@/types/dictionaries";
 
+const MovieVideo = lazy(() => import("./MovieVideo"));
+import { MovieVideoLoading } from "./MovieVideo";
+import { formatList } from "@/lib/formatList";
+import { TabTrigger } from "../ui/tabs/TabTrigger";
+
+// Props Definition
 type MovieDetailsTabProps = {
     movie: detailsMovie;
     lang: Locale;
@@ -13,49 +18,45 @@ type MovieDetailsTabProps = {
     dict: DictionaryType;
 };
 
-const TabTrigger = ({ value, label }: { value: string; label: string }) => (
-    <TabsTrigger
-        value={value}
-        className="uppercase text-md rounded-none data-[state=active]:border-b-3 data-[state=active]:border-red-600 data-[state=active]:dark:text-white data-[state=active]:text-black transition-all shadow-none"
-    >
-        {label}
-    </TabsTrigger>
-);
+// Metadata Section Component
+const MovieMetadata = ({ movie, dict }: { movie: detailsMovie; dict: DictionaryType }) => {
+    const metadata = [
+        { label: dict.genres, value: formatList(movie.genres) },
+        { label: dict.production, value: formatList(movie.production_companies) },
+        { label: dict.country, value: formatList(movie.production_countries) },
+        { label: dict.language, value: formatList(movie.spoken_languages?.map(lang => ({ name: lang.english_name }))) },
+    ];
 
-const formatList = (items?: { name: string }[], fallback = "-") => {
-    return items && items.length > 0 ? items.map((item) => item.name).join(", ") : fallback;
+    return (
+        <>
+            {metadata.map((item, index) => (
+                <p key={index}>
+                    <span className="font-medium mr-6 text-muted-foreground">{item.label}:</span>
+                    {item.value}
+                </p>
+            ))}
+        </>
+    );
 };
 
+// Main Component
 export default function MovieDetailsTab({ movie, lang, mediaType, dict }: MovieDetailsTabProps) {
     return (
         <div className="w-full">
-            {/* Tabs */}
             <Tabs defaultValue="overview" className="w-full px-4 md:px-0">
-                <TabsList className="flex  flex-row gap-4 items-start justify-start bg-transparent border-b border-transparent ">
-                    <TabTrigger value="overview" label={dict.overview}  />
-                    <TabTrigger value="video" label={dict.video}  />
+                {/* Tabs List */}
+                <TabsList className="flex flex-row gap-4 items-start justify-start bg-transparent border-b border-transparent">
+                    <TabTrigger value="overview" label={dict.overview} />
+                    <TabTrigger value="video" label={dict.video} />
                 </TabsList>
 
-                {/* Overview Content */}
+                {/* Overview Tab */}
                 <TabsContent value="overview" className="mt-4 flex flex-col gap-4">
-                    {/* Movie Overview */}
                     <p className="dark:text-gray-300">{movie.overview || dict.no_description_available}</p>
-
-                    {/* Movie Metadata */}
-                    {[
-                        { label: dict.genres, value: formatList(movie.genres) },
-                        { label: dict.production, value: formatList(movie.production_companies) },
-                        { label: dict.country, value: formatList(movie.production_countries) },
-                        { label: dict.language, value: formatList(movie.spoken_languages?.map(lang => ({ name: lang.english_name }))) },
-                    ].map((item, index) => (
-                        <p key={index}>
-                            <span className="font-medium mr-6 text-muted-foreground">{item.label}:</span>
-                            {item.value}
-                        </p>
-                    ))}
+                    <MovieMetadata movie={movie} dict={dict} />
                 </TabsContent>
 
-                {/* Video Tab Content */}
+                {/* Video Tab (Lazy Loaded) */}
                 <TabsContent value="video" className="flex flex-col">
                     <Suspense fallback={<MovieVideoLoading />}>
                         <MovieVideo movie_id={movie.id} lang={lang} mediaType={mediaType} />
