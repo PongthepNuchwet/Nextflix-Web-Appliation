@@ -96,7 +96,7 @@ export class MoviedbService {
 
       const transformImagePath = (image: Image): Image => ({
         ...image,
-        file_path: `https://image.tmdb.org/t/p/original${image.file_path}`,
+        file_path: `https://image.tmdb.org/t/p/w500${image.file_path}`,
       });
 
       return {

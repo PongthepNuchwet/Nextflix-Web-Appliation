@@ -73,7 +73,7 @@ let MoviedbService = MoviedbService_1 = class MoviedbService {
             const response = await (0, rxjs_1.firstValueFrom)(this.httpService.get(url, { headers: this.getHeaders() }));
             const transformImagePath = (image) => ({
                 ...image,
-                file_path: `https://image.tmdb.org/t/p/original${image.file_path}`,
+                file_path: `https://image.tmdb.org/t/p/w500${image.file_path}`,
             });
             return {
                 id: response.data.id,
