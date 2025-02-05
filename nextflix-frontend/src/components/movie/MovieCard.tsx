@@ -2,22 +2,25 @@
 import React from 'react'
 import { CarouselItem } from '../ui/carousel'
 import Image from 'next/image'
-import { Movie } from '@/types/movie.interface'
+import { mediaType, Movie } from '@/types/movie.interface'
 import { useRouter } from 'next/navigation'
 import { Locale } from '@/lib/i18n/i18n-config';
 
 
 type MovieCardProps = {
     movie: Movie
+    mediaType?: mediaType
     lang: Locale
 }
 
-export default function MovieCard({ movie, lang }: MovieCardProps) {
+export default function MovieCard({ movie, lang, mediaType }: MovieCardProps) {
     const router = useRouter()
 
     const onMovieClick = () => {
-        const new_media_type = movie.media_type === 'movie' ? 'movies' : movie.media_type === 'tv' ? 'tvshows' : 'movies'
-        router.push(`/${lang}/${new_media_type}/${movie.id}`)
+        const media_type = mediaType ?? movie.media_type
+        const rename_path = media_type === 'movie' ? 'movies' : media_type === 'tv' ? 'tvshows' : ''
+        if (!rename_path) return
+        router.push(`/${lang}/${rename_path}/${movie.id}`)
     }
 
     const isNewSeason = (releaseDate?: string): boolean => {
@@ -29,7 +32,7 @@ export default function MovieCard({ movie, lang }: MovieCardProps) {
             (currentDate.getTime() - releaseDateObj.getTime()) / (1000 * 60 * 60 * 24)
         );
 
-        return diffInDays <= 30; // Check if released in the last 30 days
+        return diffInDays <= 30;
     };
 
     return (
@@ -67,8 +70,8 @@ export default function MovieCard({ movie, lang }: MovieCardProps) {
                         <Image
                             src={"/vector/card-new-season.svg"}
                             alt="New Season"
-                            width={50}  
-                            height={70} 
+                            width={50}
+                            height={70}
                         />
                     </div>
                 )}
