@@ -19,11 +19,16 @@ export default async function MoviePopular({ lang, dict }: MoviePopularProps) {
         }
 
         return (
-            <MovieCarousel title={dict.popular_movies} movies={movies} lang={lang} />
+            <MovieCarousel title={dict.popular_movies} movies={movies} lang={lang} mediaType='movie' />
         );
 
     } catch (error) {
         console.error("Error fetching movies:", error);
-        return <ErrorMessage message={dict.error_fetch_movies} />;
+        return (
+            <div className='z-50 w-full flex flex-col gap-2'>
+                <h2 className=' text-2xl font-bold'>{dict.popular_tv_shows}</h2>
+                <ErrorMessage message={dict.error_fetch_movies} />
+            </div>
+        )
     }
 }

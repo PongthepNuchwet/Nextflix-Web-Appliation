@@ -19,11 +19,17 @@ export default async function TVPopular({ lang, dict }: TVPopularProps) {
         }
 
         return (
-            <MovieCarousel title={dict.popular_tv_shows} movies={movies} lang={lang} />
+            <MovieCarousel title={dict.popular_tv_shows} movies={movies} lang={lang} mediaType='tv' />
         );
 
     } catch (error) {
-        console.error("Error fetching movies:", error);
-        return <ErrorMessage message={dict.error_fetch_movies} />;
+        console.error("Error fetching TV Shows:", error);
+        return (
+            <div className='z-50 w-full flex flex-col gap-2'>
+                <h2 className=' text-2xl font-bold'>{dict.popular_tv_shows}</h2>
+                <ErrorMessage message={dict.error_fetch_movies} />
+            </div>
+        )
+
     }
 }
