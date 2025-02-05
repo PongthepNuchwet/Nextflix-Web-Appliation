@@ -75,7 +75,7 @@ export default function TopBar({ dict, lang }: TopBarProps) {
             <Link href={`/${lang}/new-popular`} className={`hidden lg:block ${getLinkClass(`/${lang}/new-popular`)}`}>
               {dict.new_popular}
             </Link>
-            <Link href={`/${lang}/my-list`} className={`hidden lg:block ${getLinkClass(`/${lang}/my-list`)}`}>
+            <Link href={`#`} className={`hidden lg:block ${getLinkClass(`/${lang}/my-list`)}`}>
               {dict.my_list}
             </Link>
             <Button
@@ -96,7 +96,7 @@ export default function TopBar({ dict, lang }: TopBarProps) {
 
                 options={[
                   { href: `/${lang}/new-popular`, label: dict.new_popular },
-                  { href: `/${lang}/my-list`, label: dict.my_list },
+                  { href: `#`, label: dict.my_list },
                   { href: `/${lang}/browse-by-language`, label: dict.browse_by_language },
                 ]}
               />

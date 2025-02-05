@@ -31,10 +31,10 @@ export default function MovieDropdownMenu({ options, trigger, toggleLanguage }: 
                         return (
                             <DropdownMenuItem
                                 key={index}
-                                className="cursor-pointer border-none outline-none py-3"
+                                className="cursor-pointer border-none outline-none py-3 "
                                 onClick={toggleLanguage}
                             >
-                                {option.label}
+                               <p className="w-full block px-4 py-2"> {option.label}</p>
                             </DropdownMenuItem>
                         )
                     } else {
